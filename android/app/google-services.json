@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "382145609535",
+    "firebase_url": "https://eazidrop-c7aab.firebaseio.com",
+    "project_id": "eazidrop-c7aab",
+    "storage_bucket": "eazidrop-c7aab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382145609535:android:11d1714851cee5e6",
+        "android_client_info": {
+          "package_name": "com.example.ekwanso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382145609535-kg1umssv8op6fpq0ef489idfip0r9sht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCKpfy71nwALuSadsBfE_N1PgWNN0LE_0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
