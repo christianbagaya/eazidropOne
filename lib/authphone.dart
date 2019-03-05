@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NameandEmail extends StatelessWidget {
+class PhoneAuth extends StatelessWidget {
+  //used to make sure the user entered the email and username/email
+
 //  static final GlobalKey<FormFieldState<String>> formkey = GlobalKey<FormFieldState<String>>();
-  static final formkey = GlobalKey<FormFieldState<String>>();
-
-  String firstName, lastName, email, password, phoneNumber;
-
+  final formkey = GlobalKey<FormState>();
+  String email, password;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     double myWidth = MediaQuery.of(context).size.width;
     double myHeight = MediaQuery.of(context).size.height;
-    /**
-     * This is the widget that contains the sign up entry points
-     * and the submit button
-     */
+
+    // TODO: implement build
     return Scaffold(
 //        appBar: AppBar(
 //          title: Text("Eazi drop"),
@@ -26,7 +23,6 @@ class NameandEmail extends StatelessWidget {
         Column(
           children: <Widget>[
             Container(
-//              color: Colors.pink,
               width: myWidth,
               height: myHeight * 0.3,
 //              color: Colors.deepPurple,
@@ -37,60 +33,55 @@ class NameandEmail extends StatelessWidget {
               )),
             ),
             Container(
-//            color: Colors.red,
-              padding: EdgeInsets.all(myHeight * 0.015),
+              padding: EdgeInsets.all(myHeight * 0.005),
               alignment: Alignment(0.0, 1.0),
+
               width: myWidth,
-              height: myHeight * 0.70,
+              height: myHeight * 0.7,
+//          alignment: Alignment(0.0, 0.0),
+//              color: Colors.greenAccent,
+
               child: Container(
                 margin: EdgeInsets.only(top: myHeight * 0.15),
                 child: Column(
                   children: <Widget>[
-                    /**
-                     * The form that is being used to verify and use the data that
-                     * is entered in the sign up process
-                     */
                     Form(
                       key: formkey,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Container(
-//                              color: Colors.pink,
-                            child: TextFormField(
-//
-                              decoration: InputDecoration(
-                                  labelText: "First Name",
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20.0)),
-                                  )),
-//
-                              validator: (input) => (input==null)
-                                  ? 'Invalid First name'
-                                  : null,
-                              onSaved: (input) => firstName = input,
-                            ),
-                            margin: EdgeInsets.only(bottom: myHeight * 0.01),
+                            margin: EdgeInsets.all(myHeight * 0.01),
+                            child: Text("Enter your phone number"),
                           ),
                           Container(
 //                              color: Colors.pink,
                             child: TextFormField(
-//
+//                  crossAxisAlignment: CrossAxisAlignment.center
                               decoration: InputDecoration(
-                                  labelText: "Last Name",
+                                  labelText: "ex: 0554181166",
                                   border: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20.0)),
                                   )),
-//
-                              validator: (input) => (input == null)
-                                  ? 'Invalid Last name'
-                                  : null,
-                              onSaved: (input) => firstName = input,
+//                                      borderSide: BorderSide(
+//                                          color: Colors.pink[100],
+//                                          width: 2.5,
+//                                          style: BorderStyle.solid))),
+//                              style: TextStyle(color: Colors.white),
+
+                              validator: (input) =>
+                                  !(input.length == 10 || input.length == 9)
+                                      ? 'Invalid number'
+                                      : null,
+                              inputFormatters: [
+                                WhitelistingTextInputFormatter.digitsOnly
+                              ],
+                              onSaved: (input) => email = input,
                             ),
                             margin: EdgeInsets.only(bottom: myHeight * 0.01),
                           ),
+//
                         ],
                       ),
                     ),
@@ -119,13 +110,13 @@ class NameandEmail extends StatelessWidget {
                       width: myWidth,
                       height: myHeight * 0.1,
                       child: RaisedButton(
-                        onPressed: () {
-//                          if (signUp()) {
-                          Navigator.of(context).pushNamed("passwordPage");
-//                          }
-                        },
-                        child: Text("Sign up"),
-                      ),
+                          child: Text("OK"),
+                          onPressed: () {
+                            if (login()) {
+                              Navigator.of(context)
+                                  .pushNamed("emailAndPassword");
+                            }
+                          }),
                     ),
 //
                   ],
@@ -136,14 +127,19 @@ class NameandEmail extends StatelessWidget {
           ],
         )
       ],
-    ));
+    )
+    );
   }
 
-  signUp() {
+  /**
+   * Database check out
+   */
+  login() {
     if (formkey.currentState.validate()) {
       formkey.currentState.save();
-      print(firstName);
-      print(lastName);
+      print(email);
+      print(password);
+
       return true;
     }
   }

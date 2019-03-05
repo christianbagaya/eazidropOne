@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-class Login extends StatelessWidget {
+class CreatePassword extends StatelessWidget {
   //used to make sure the user entered the email and username/email
-  final formkey = GlobalKey<FormState>();
+  static final GlobalKey<FormFieldState<String>> formkey = GlobalKey<FormFieldState<String>>();
   String email, password;
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,13 @@ class Login extends StatelessWidget {
     double myHeight = MediaQuery.of(context).size.height;
 
     // TODO: implement build
-    return ListView(
+    return
+      Scaffold(
+//        appBar: AppBar(
+//          title: Text("Eazi drop"),
+//        ),
+        body:
+      ListView(
       shrinkWrap: true,
       children: <Widget>[
         Column(
@@ -119,12 +125,10 @@ class Login extends StatelessWidget {
             ),
             //This is a collum containing th
           ],
-        )],);
-  }
+        )],)
 
-  /**
-   * Database check out
-   */
+
+      );}
   void login() {
     if (formkey.currentState.validate()) {
       formkey.currentState.save();
@@ -133,3 +137,5 @@ class Login extends StatelessWidget {
     }
   }
 }
+
+
